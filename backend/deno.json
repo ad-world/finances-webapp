@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-env --allow-read --allow-write --allow-net --watch --env-file src/index.ts"
+    
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "@finances/shared": "../shared/npm"
+  }
+}
