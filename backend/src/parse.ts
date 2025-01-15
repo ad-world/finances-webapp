@@ -1,9 +1,6 @@
-export const parseCsv = async (fileName: string) => {
-  const file = await Deno.open(fileName);
-  const reader = file.readable.getReader();
-  const result = await reader.read();
-  const text = new TextDecoder().decode(result.value);
-  const rows = text.split("\n");
+export const parseCsv = async (file: File) => {
+  const text = await file.text();
+  const rows = text.trim().split("\n");
   const headers = rows[0].split(",");
   const jsonData = [];
 
@@ -17,10 +14,7 @@ export const parseCsv = async (fileName: string) => {
     jsonData.push(row);
   }
 
-  file.close();
-
   return jsonData;
 };
-
 
 

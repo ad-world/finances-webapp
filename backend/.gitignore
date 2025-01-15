@@ -1,2 +1,4 @@
 .env
 sample_data/
+node_modules/
+data.db
