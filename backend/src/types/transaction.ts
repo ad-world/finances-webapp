@@ -1,13 +1,21 @@
-import * as zod from "npm:zod";
+import { z } from "zod";
 
-export const transactionSchema = zod.object({
-    "currency": zod.string(),
-    "account_type": zod.string(),
-    "description": zod.string(),
-    "transaction_date": zod.string(),
-    "transaction_type": zod.string(),
-    "amount": zod.number(),
+export const transactionSchema = z.object({
+    "currency": z.string(),
+    "account_type": z.string(),
+    "description": z.string(),
+    "transaction_date": z.string(),
+    "transaction_type": z.string(),
+    "amount": z.number(),
   });
-  
-export type Transaction = zod.infer<typeof transactionSchema>;
+
+export type TransactionSchema = {
+  currency: string;
+  account_type: string;
+  description: string;
+  transaction_date: string;
+  transaction_type: string;
+  amount: number;
+}
+
   

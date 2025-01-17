@@ -1,7 +1,7 @@
 import { getHeaderMapping, normalizeTransactions } from "./intelligence.ts";
 import { parseCsv } from "./parse.ts";
 import { Server } from "./server.ts";
-import { Transaction } from "./types/transaction.ts";
+import type { TransactionSchema } from "./types/transaction.ts";
 
 const server = new Server(3000);
 
@@ -18,7 +18,7 @@ async function extractFiles(req: Request): Promise<FileMap> {
   const formData = await req.formData();
   const files: FileMap = {};
 
-  for (const [fieldName, value] of formData.entries()) {
+  for (const [fieldName, value] of Object.entries(formData)) {
     if (value instanceof File) {
       if (!files[fieldName]) {
         files[fieldName] = [];
@@ -30,7 +30,7 @@ async function extractFiles(req: Request): Promise<FileMap> {
   return files;
 }
 
-const headerMappingCache = new Map<string, Transaction>();
+const headerMappingCache = new Map<string, TransactionSchema>();
 
 server.post("/api/upload", async (req) => {
     try {
@@ -45,7 +45,7 @@ server.post("/api/upload", async (req) => {
             let cachedHeaderMapping = headerMappingCache.get(headers);
             
             if (!cachedHeaderMapping) {
-                const headerMapping = await getHeaderMapping(csvData[0] as unknown as Transaction);
+                const headerMapping = await getHeaderMapping(csvData[0] as unknown as TransactionSchema);
                 if (!headerMapping) {
                     throw new Error('Could not determine header mapping');
                 }
@@ -53,7 +53,7 @@ server.post("/api/upload", async (req) => {
                 cachedHeaderMapping = headerMapping;
             }
 
-            const normalizedTransactions = normalizeTransactions(csvData, cachedHeaderMapping as unknown as Transaction);
+            const normalizedTransactions = normalizeTransactions(csvData, cachedHeaderMapping as unknown as TransactionSchema);
             allTransactions.push(...normalizedTransactions);
         }
 

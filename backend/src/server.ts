@@ -147,6 +147,9 @@ export class Server {
   public start(): void {
     console.log(`Server running on http://localhost:${this.port}`);
     
-    Deno.serve({ port: this.port }, (req) => this.handleRequest(req));
+    Bun.serve({
+      port: this.port,
+      fetch: (req) => this.handleRequest(req)
+    });
   }
 }

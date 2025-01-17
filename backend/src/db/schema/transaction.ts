@@ -2,7 +2,7 @@ import { sqliteTable, integer, text, index } from "drizzle-orm/sqlite-core"
 
 export const transactions = sqliteTable("transactions", {
     id: integer().primaryKey({ autoIncrement: true }),
-    transactionKey: text().notNull().unique(),
+    transactionKey: text().unique().notNull(),
     currency: text().notNull(),
     accountPlatform: text().notNull(), // RBC, Wealthsimple, etc.
     accountType: text().notNull(), // Checking, Savings, etc.
@@ -10,5 +10,5 @@ export const transactions = sqliteTable("transactions", {
     transactionDate: text().notNull(),
     transactionType: text().notNull(), // Purchase, Refund, etc.
     amount: integer().notNull(),
-    createdAt: integer().notNull().$defaultFn(() => Date.now()),
+    createdAt: integer().$defaultFn(() => Date.now()).notNull(),
 }, t => [index("transaction_key_index").on(t.transactionKey)]);

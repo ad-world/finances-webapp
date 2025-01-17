@@ -1,6 +1,7 @@
-import { Transaction, transactionSchema } from "../types/transaction.ts";
+import type { TransactionSchema } from "../types/transaction.ts";
+import { transactionSchema } from "../types/transaction.ts";
 
-export const headerMappingPrompt = (sample_transaction: Transaction) => {
+export const headerMappingPrompt = (sample_transaction: TransactionSchema) => {
     return `
     You are a helpful assistant that helps with mapping unknown headers to a set of bounded headers..
     The response should be an object that maps the headers in the sample transaction to the headers in the given response schema, where the keys 
