@@ -28,7 +28,10 @@ describe("Database Operations", () => {
             const mappedHeaders = {
                 "transaction_date": "Date",
                 "description": "Description",
-                "amount": "Amount"
+                "amount": "Amount",
+                "account_type": "account_type",
+                "currency": "currency",
+                "transaction_type": "transaction_type"
             };
 
             const currentMappings = await getHeaderMappings(testDb.db);

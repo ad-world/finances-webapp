@@ -30,7 +30,7 @@ async function extractFiles(req: Request): Promise<FileMap> {
   return files;
 }
 
-const headerMappingCache = new Map<string, TransactionSchema>();
+const headerMappingCache = new Map<string, Record<keyof TransactionSchema, string>>();
 
 server.post("/api/upload", async (req) => {
     try {
@@ -45,7 +45,7 @@ server.post("/api/upload", async (req) => {
             let cachedHeaderMapping = headerMappingCache.get(headers);
             
             if (!cachedHeaderMapping) {
-                const headerMapping = await getHeaderMapping(csvData[0] as unknown as TransactionSchema);
+                const headerMapping = await getHeaderMapping(csvData[0]);
                 if (!headerMapping) {
                     throw new Error('Could not determine header mapping');
                 }
@@ -53,7 +53,7 @@ server.post("/api/upload", async (req) => {
                 cachedHeaderMapping = headerMapping;
             }
 
-            const normalizedTransactions = normalizeTransactions(csvData, cachedHeaderMapping as unknown as TransactionSchema);
+            const normalizedTransactions = normalizeTransactions(csvData, cachedHeaderMapping);
             allTransactions.push(...normalizedTransactions);
         }
 
