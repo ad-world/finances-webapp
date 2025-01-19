@@ -1,0 +1,1 @@
+ALTER TABLE `descriptionMapping` ADD `category` text NOT NULL;

@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `descriptionMapping_uncleanDescription_unique` ON `descriptionMapping` (`uncleanDescription`);

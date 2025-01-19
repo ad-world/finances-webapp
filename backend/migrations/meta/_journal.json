@@ -15,6 +15,27 @@
       "when": 1737301712870,
       "tag": "0001_acoustic_lilith",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1737302573879,
+      "tag": "0002_marvelous_ben_parker",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1737305248303,
+      "tag": "0003_confused_vector",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1737305305665,
+      "tag": "0004_clean_the_spike",
+      "breakpoints": true
     }
   ]
 }

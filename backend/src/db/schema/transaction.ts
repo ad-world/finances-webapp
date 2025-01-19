@@ -4,11 +4,11 @@ export const transactions = sqliteTable("transactions", {
     id: integer().primaryKey({ autoIncrement: true }),
     transactionKey: text().unique().notNull(),
     currency: text().notNull(),
-    accountPlatform: text().notNull(), // RBC, Wealthsimple, etc.
+    accountPlatform: text(), // RBC, Wealthsimple, etc.
     accountType: text().notNull(), // Checking, Savings, etc.
     description: text().notNull(),
     transactionDate: text().notNull(),
-    transactionType: text().notNull(), // Purchase, Refund, etc.
+    transactionType: text(), // Purchase, Refund, etc.
     amount: integer().notNull(),
     createdAt: integer().$defaultFn(() => Date.now()).notNull(),
 }, t => [index("transaction_key_index").on(t.transactionKey)]);
