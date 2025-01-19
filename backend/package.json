@@ -3,7 +3,10 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run src/index.ts"
+    "dev": "bun run src/index.ts",
+    "nuke": "bun run src/sandboxing/nuke.ts",
+    "sandbox": "bun run src/sandboxing/sandbox.ts",
+    "migrate": "npx drizzle-kit generate && npx drizzle-kit migrate"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -16,6 +19,7 @@
     "drizzle-kit": "^0.30.2",
     "drizzle-orm": "^0.38.4",
     "openai": "^4.78.1",
+    "p-throttle": "^7.0.0",
     "zod": "^3.24.1"
   }
 }
