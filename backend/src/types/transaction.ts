@@ -9,13 +9,12 @@ export const transactionSchema = z.object({
     "amount": z.number(),
   });
 
-export type TransactionSchema = {
-  currency: string;
-  account_type: string;
-  description: string;
-  transaction_date: string;
-  transaction_type: string;
-  amount: number;
-}
+export const descriptionSchema = z.object({
+  "merchant": z.string(),
+  "category": z.string(),
+});
+
+export type TransactionSchema = z.infer<typeof transactionSchema>;
+export type DescriptionSchema = z.infer<typeof descriptionSchema>;
 
   
